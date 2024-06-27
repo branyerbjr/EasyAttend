@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Dispositivo
+from .models import IoT
 
-class DispositivoSerializer(serializers.ModelSerializer):
+class IoTSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Dispositivo
-        fields = '__all__'
+        model = IoT
+        fields = ['id', 'nombre', 'descripcion', 'topic', 'fecha_registro', 'lugar']

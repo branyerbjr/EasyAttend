@@ -16,18 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from alumnos.views import AlumnoViewSet
-from iot.views import DispositivoViewSet
-from asistencia.views import AsistenciaViewSet
-
-router = DefaultRouter()
-router.register(r'alumnos', AlumnoViewSet)
-router.register(r'dispositivos', DispositivoViewSet)
-router.register(r'asistencias', AsistenciaViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/alumnos/', include('alumnos.urls')),
+    path('api/iot/', include('iot.urls')),
+    path('api/asistencia/', include('asistencia.urls')),
 ]
 

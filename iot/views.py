@@ -1,7 +1,7 @@
 from rest_framework import viewsets
-from .models import Dispositivo
-from .serializers import DispositivoSerializer
+from .models import IoT
+from .serializers import IoTSerializer
 
-class DispositivoViewSet(viewsets.ModelViewSet):
-    queryset = Dispositivo.objects.all()
-    serializer_class = DispositivoSerializer
+class IoTViewSet(viewsets.ModelViewSet):
+    queryset = IoT.objects.all()
+    serializer_class = IoTSerializer
