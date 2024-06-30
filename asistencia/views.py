@@ -69,3 +69,17 @@ class AsistenciaViewSet(viewsets.ModelViewSet):
         queryset = Asistencia.objects.all()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+    @action(detail=False, methods=['GET'])
+    def buscar_por_alumno(self, request):
+        dni = request.query_params.get('dni')
+        if not dni:
+            return Response({'error': 'Parámetro "dni" requerido en la consulta'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            alumno = Alumno.objects.get(dni=dni)
+            asistencias = Asistencia.objects.filter(alumno=alumno)
+            serializer = self.get_serializer(asistencias, many=True)
+            return Response(serializer.data)
+        except Alumno.DoesNotExist:
+            return Response({'error': 'El alumno no existe'}, status=status.HTTP_404_NOT_FOUND)
